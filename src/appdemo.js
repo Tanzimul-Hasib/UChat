@@ -1,28 +1,21 @@
 import React, { useRef, useState } from "react";
 import "./App.css";
-import logo from "./logo.png";
-import send from "./send.png";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
+import "firebase/analytics";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
 firebase.initializeApp({
   // your config
-  apiKey: "AIzaSyAgsF3K0HJqu4uvlI45V1tiMNZleorUHbM",
-  authDomain: "uchat-1af18.firebaseapp.com",
-  projectId: "uchat-1af18",
-  storageBucket: "uchat-1af18.appspot.com",
-  messagingSenderId: "1031967931288",
-  appId: "1:1031967931288:web:7fb4679be41105789a09ed",
-  measurementId: "G-0MPD3YFZKG",
 });
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();
+const analytics = firebase.analytics();
 
 function App() {
   const [user] = useAuthState(auth);
@@ -30,9 +23,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>
-          Ultra Chat <img className="logo" src={logo} />
-        </h1>
+        <h1>⚛️🔥💬</h1>
         <SignOut />
       </header>
 
@@ -49,12 +40,12 @@ function SignIn() {
 
   return (
     <>
-      <div>
-        <button className="sign-in" onClick={signInWithGoogle}>
-          Sign in with Google
-        </button>
-        <p className="text">Only for personal use</p>
-      </div>
+      <button className="sign-in" onClick={signInWithGoogle}>
+        Sign in with Google
+      </button>
+      <p>
+        Do not violate the community guidelines or you will be banned for life!
+      </p>
     </>
   );
 }
@@ -111,7 +102,7 @@ function ChatRoom() {
         />
 
         <button type="submit" disabled={!formValue}>
-          <img src={send} alt="" />
+          🕊️
         </button>
       </form>
     </>
